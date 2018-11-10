@@ -8,11 +8,9 @@ export class Home extends Component {
     async componentDidMount() {
         try{
             const books = await getAll();
+            //read from provider
+            this.props.readingStatus(books);
             // console.log(books)
-            const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
-            const wantToRead = books.filter( book => book.shelf === "wantToRead");
-            const read = books.filter(book => book.shelf === "read");
-            console.log(currentlyReading,wantToRead,read)
         }
         catch(error){
             console.log(error)
@@ -25,9 +23,9 @@ export class Home extends Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-               <Shelf title="Currently Reading"/>
-               <Shelf  title="Want to Read"/>
-               <Shelf  title="Read"/>
+               <Shelf title="Currently Reading" books={this.props.currentlyReading} />
+               <Shelf  title="Want to Read" books={this.props.wantToRead} />
+               <Shelf  title="Read" books={this.props.read} />
             </div>
             <ShowSearch/>
           </div>
