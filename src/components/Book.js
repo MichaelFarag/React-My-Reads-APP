@@ -1,7 +1,23 @@
 import React, { Component } from 'react'
+import { update } from '../api/BooksAPI';
+import { Shelf } from './Shelf';
 
 export class Book extends Component {
-  render() {
+    
+  handlechange = async e => {
+      // console.log(e.target.value)
+      try {
+        const shelf = e.target.value;
+        const book = this.props;
+        const result  = await update (book,shelf)
+        this.props.moveBook(book,shelf,result);
+        // console.log(shelfStatusUpdate)
+      }catch (error){
+        console.log(error)
+      }
+    }
+  
+    render() {
     return (
         <li>
                         <div className="book">
@@ -10,7 +26,7 @@ export class Book extends Component {
                               
                               </div>
                             <div className="book-shelf-changer">
-                              <select>
+                              <select onChange={this.handlechange}>
                                 <option value="move" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>

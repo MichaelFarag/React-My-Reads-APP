@@ -14,10 +14,26 @@ export class index extends Component {
         const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
         const wantToRead = books.filter( book => book.shelf === "wantToRead");
         const read = books.filter(book => book.shelf === "read");
-        this.setState({books,currentlyReading,wantToRead,read})
-      }
+        this.setState({books,currentlyReading,wantToRead,read},
+       )},
+    moveBook: (book, newShelf, allshelfs ) => {
+      console.log(newShelf);
+        const newBooks = this.state.books.map(allBooks => {
+          const foundID = allshelfs[newShelf].find(
+            bookID => bookID === allBooks.id
+          );
+          if (foundID){
+            allBooks.shelf = newShelf;
+          }
+          return allBooks;
+        });
+
+        this.state.readingStatus(newBooks);
+
+
     }
   }
+}
   render() {
     return ( 
     <MyContext.Provider value={{ ...this.state }}>
