@@ -9,7 +9,8 @@ export class index extends Component {
       books : [],
       currentlyReading : [],
       wantToRead : [],
-      read : []
+      read : [],
+      updateBooks : books => {}
     }
   }
   render() {

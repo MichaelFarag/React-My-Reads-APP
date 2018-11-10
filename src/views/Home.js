@@ -8,7 +8,11 @@ export class Home extends Component {
     async componentDidMount() {
         try{
             const books = await getAll();
-            console.log(books)
+            // console.log(books)
+            const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
+            const wantToRead = books.filter( book => book.shelf === "wantToRead");
+            const read = books.filter(book => book.shelf === "read");
+            console.log(currentlyReading,wantToRead,read)
         }
         catch(error){
             console.log(error)
