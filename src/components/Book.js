@@ -38,8 +38,8 @@ export class Book extends Component {
                               </select>
                             </div>
                           </div>
-                          <div className="book-title">{this.props.title}</div>
-                          <div className="book-authors">{this.props.authors[0]}</div>
+                          <div className="book-title">{this.props.title ? this.props.title : "Title not available"}</div>
+                          <div className="book-authors">{this.props.authors ? this.props.authors[0] : "Author name not available"}</div>
                         </div>
                       </li>
     )
