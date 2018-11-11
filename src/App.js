@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom';
+
 import  Home  from './views/Home';
 import  Search  from './views/Search';
 import  Provider, {MyContext} from './Provider';
