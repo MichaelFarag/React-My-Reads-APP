@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { search } from '../api/BooksAPI'
 import { Book } from '../components/Book';
+import { getAll } from '../api/BooksAPI';
 
 export class Search extends Component {
     
@@ -12,7 +13,17 @@ export class Search extends Component {
       books : []
     }
       }
-
+      async componentDidMount() {
+        try{
+            const books = await getAll();
+            //read from provider
+            this.props.readingStatus(books);
+            // console.log(books)
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
   handlechange = async e => {
     // console.log(e.target.value)
     try {
@@ -48,7 +59,20 @@ export class Search extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                {this.state.books.length > 0 && this.state.books.map(book => <Book {...book} moveBook={this.props.moveBook} key={book.id}/>)}
+                {this.state.books.length > 0 &&
+                   this.state.books.map(book => {
+                     const foundShelf = this.props.books.find(searchBook => searchBook.id === book.id)
+                    if (foundShelf){
+                     book.shelf = foundShelf.shelf;
+                      
+                    }else {
+                      book.shelf = "none"
+                    }
+                     console.log(foundShelf);
+                     return <Book {...book} moveBook={this.props.moveBook} key={book.id}/>
+  
+                   }
+                   )}
               </ol>
             </div>
           </div>
