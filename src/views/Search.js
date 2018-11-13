@@ -68,7 +68,7 @@ export class Search extends Component {
                     }else {
                       book.shelf = "none"
                     }
-                     console.log(foundShelf);
+                    //  console.log(foundShelf);
                      return <Book {...book} moveBook={this.props.moveBook} key={book.id}/>
   
                    }

@@ -7,10 +7,12 @@ export class Book extends Component {
 
   handlechange = async e => {
       // console.log(e.target.value)
+      e.persist();
       try {
         const shelf = e.target.value;
         const book = this.props;
         const result  = await update (book,shelf)
+        // this.props.shelf = e.target.value;
         this.props.moveBook(book,shelf,result);
         // console.log(shelfStatusUpdate)
       }catch (error){
