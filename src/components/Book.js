@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { update } from '../api/BooksAPI';
-import { Shelf } from './Shelf';
+// import { Shelf } from './Shelf';
 
 export class Book extends Component {
 

@@ -30,6 +30,8 @@ export class Search extends Component {
       const searchQuery = e.target.value;
       // const book = this.props;
       this.setState({searchQuery})
+
+      if (searchQuery.trim()){
       const searchResult  = await search (searchQuery)
       if (searchResult.error){
         this.setState({books : []});
@@ -38,7 +40,9 @@ export class Search extends Component {
       }
       // console.log(searchResult)
       // this.props.moveBook(book,shelf,result);
-      
+    }else{
+      this.setState({books:[]})
+    }
     }catch (error){
       console.log(error)
     }
